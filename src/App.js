@@ -1,26 +1,59 @@
+/* ## DEPENDENCIES ## */
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Link } from 'wouter'
+
+// ## CONTEXT ##
+//import { GifsContextProvider } from './context/GifsContext'
+
+// ## PAGES ##
+//import { Home, SearchResults, Detail } from './pages'
+
+import {GifsList} from 'components/'
+// #### STYLES ####
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App () {
+
+   return (
+      <div className="App">
+         <section className="App-content">
+
+            <Link to="/">
+               <h1 style={{marginTop: 0, textAlign: 'center'}}>
+                  <span role="img" aria-labelledby="🔎">
+                     { } 🔎
+                  </span>
+                  SEARCH's GIFFS
+               </h1>
+            </Link>
+
+            <Route
+               component={GifsList}
+               path='/gif/:searchGifs'
+            />
+            {/* <GifsList searchGifs="most popular" /> */}
+
+            {/* <GifsContextProvider>
+               <Route
+                  component={Home}
+                  path="/"
+               />
+
+               <Route
+                  component={SearchResults}
+                  path='/search/:searchGifs'
+               />
+
+               <Route
+                  component={Detail}
+                  path="/gif/:id"
+               />
+            </GifsContextProvider> */}
+
+         </section>
+      </div>
+   );
+
 }
 
 export default App;
