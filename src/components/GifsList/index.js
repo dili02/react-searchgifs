@@ -1,5 +1,5 @@
 // ### DEPENDENCES ###
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 
 // ### COMPONENTS ###
 import { Gif } from '../index'
@@ -7,24 +7,7 @@ import { Gif } from '../index'
 // ### STYLES ###
 import './gifList.css'
 
-import getGifs from 'services/getGifs'
-
-export default function GifsList ({params}) {
-   const {searchGifs} = params
-   const [loading, setLoading]= useState(false)
-   const [gifs, setGifs] = useState([])
-
-   useEffect(() => {
-      setLoading(true)
-      getGifs({searchGifs})
-      .then(gifs => {
-         setGifs(gifs)
-         setLoading(false)
-      })
-   }, [searchGifs])
-   console.log(gifs)
-
-   if (loading) return <h2>CARGANDO...</h2>
+export default function GifsList ({gifs}) {
 
 	return (
 		<div className = 'ListOfGifs'>

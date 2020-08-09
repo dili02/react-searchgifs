@@ -3,12 +3,11 @@ import React from 'react';
 import { Route, Link } from 'wouter'
 
 // ## CONTEXT ##
-//import { GifsContextProvider } from './context/GifsContext'
+import { GifsContextProvider } from 'context/GifsContext'
 
 // ## PAGES ##
-//import { Home, SearchResults, Detail } from './pages'
+import {Home, SearchResults, Detail} from './pages'
 
-import {GifsList} from 'components/'
 // #### STYLES ####
 import './App.css';
 
@@ -27,19 +26,13 @@ function App () {
                </h1>
             </Link>
 
-            <Route
-               component={GifsList}
-               path='/gif/:searchGifs'
-            />
-            {/* <GifsList searchGifs="most popular" /> */}
-
-            {/* <GifsContextProvider>
+            <GifsContextProvider>
                <Route
                   component={Home}
                   path="/"
                />
 
-               <Route
+                <Route
                   component={SearchResults}
                   path='/search/:searchGifs'
                />
@@ -48,7 +41,7 @@ function App () {
                   component={Detail}
                   path="/gif/:id"
                />
-            </GifsContextProvider> */}
+            </GifsContextProvider>
 
          </section>
       </div>

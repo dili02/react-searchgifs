@@ -1,9 +1,7 @@
-//const apiKEY = 'ZrcTC5znond26fhvdU4oi2xQZ2kHQJmu'
-import {API_KEY, API_URL} from './settings'
+import {API_URL} from './settings'
 
 export default async function getGifs ({limit=25, searchGifs} = {} ) {
-
-   const query = `${API_URL}/gifs/search?api_key=${API_KEY}&q=${searchGifs}&${limit}&offset=0&rating=g&lang=en`
+   const query = `${API_URL}/gifs/search?api_key=${process.env.REACT_APP_API_KEY}&q=${searchGifs}&${limit}&offset=0&rating=g&lang=en`
 
    try {
 

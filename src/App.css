@@ -22,7 +22,7 @@
    min-height: 100vh;
    padding: 16px;
    text-align: left;
- }*/
+ } */
 
 .App-main {
    display: flex;
@@ -31,7 +31,7 @@
 }
 
 .App-results {
-   flex-shrink: 2;
+   flex-shrink: 2; width: 100%;
 }
 
 .App-category {
@@ -39,7 +39,7 @@
    width: 100%;
 }
 
-@media screen and (min-width: 640px){
+@media screen and (min-width: 980px){
    .App-main{
      flex-direction: initial;
    }
