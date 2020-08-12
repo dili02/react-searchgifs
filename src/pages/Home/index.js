@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useLocation } from 'wouter'
 
 // ### COMPONENTS ###
-import { RenderGifs } from 'components/'
+import { RenderGifs, TrendingSearches } from 'components/'
 
 export default function Home () {
    const [searchGifs, setSearchGifs] = useState("")
@@ -35,6 +35,7 @@ export default function Home () {
                <RenderGifs searchGifs="most populars" />
             </div>
             <div className="App-category">
+               <TrendingSearches />
             </div>
          </div>
 

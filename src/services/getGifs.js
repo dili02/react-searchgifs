@@ -1,7 +1,7 @@
 import {API_URL} from './settings'
 
-export default async function getGifs ({limit=25, searchGifs} = {} ) {
-   const query = `${API_URL}/gifs/search?api_key=${process.env.REACT_APP_API_KEY}&q=${searchGifs}&${limit}&offset=0&rating=g&lang=en`
+export default async function getGifs ({limit=25, searchGifs, page=0} = {} ) {
+   const query = `${API_URL}/gifs/search?api_key=${process.env.REACT_APP_API_KEY}&q=${searchGifs}&${limit}&offset=${page*limit}&rating=g&lang=en`
 
    try {
 
