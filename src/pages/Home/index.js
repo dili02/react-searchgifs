@@ -31,7 +31,7 @@ export default function Home () {
 
          <div className="App-main">
             <div className="App-results">
-               <h3 className="App-title">Mas Populares</h3>
+               <h3 className="App-title">Most Populars</h3>
                <RenderGifs searchGifs="most populars" />
             </div>
             <div className="App-category">

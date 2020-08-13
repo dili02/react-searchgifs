@@ -11,7 +11,15 @@ export default function TrendingSearches () {
    const [trends, setTrends] = useState([])
 
    useEffect(() => {
-      getTrendingGifs().then(setTrends)
+      let mounted = true
+      getTrendingGifs().then(() => {
+         if (mounted) {
+            setTrends(setTrends)
+         }
+      })
+      return function cleanup() {
+         mounted = false
+      }
    }, [])
 
    return <Category options={trends} name="tendencias" />

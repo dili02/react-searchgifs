@@ -1,21 +1,25 @@
-import React, {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef} from 'react'
 
-export default function useLazyLoad ({distance = '150px'} = {}) {
+export default function useLazyLoad ({distance = '150px', externalRef, toogleIsVisible=true} = {}) {
    const [isNearScreen, setIsNearScreen] = useState(false)
    const elementRef = useRef()
 
    useEffect(() => {
       let observer
+      const element = externalRef ? externalRef.current : elementRef.current
 
       const callback = (entries, observer) => {
          const elementToObserve = entries[0]
 
          if (elementToObserve.isIntersecting) {
             setIsNearScreen(true)
-            observer.disconnect()
+            toogleIsVisible && observer.disconnect()
+         } else {
+            !toogleIsVisible && setIsNearScreen(false)
          }
       }
 
+      // Pollyfill
       Promise.resolve(
          typeof IntersectionObserver !== 'undefined'
          ? IntersectionObserver
@@ -25,7 +29,7 @@ export default function useLazyLoad ({distance = '150px'} = {}) {
             rootMargin: distance
          })
 
-         observer.observe(elementRef.current)
+         if (element) observer.observe(element)
       })
 
       return () => observer && observer.disconnect()
