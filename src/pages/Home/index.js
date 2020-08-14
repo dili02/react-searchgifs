@@ -1,34 +1,20 @@
 // ### DEPENDENCES ###
-import React, { useState } from 'react'
+import React, {useCallback} from 'react'
 import { useLocation } from 'wouter'
 
 // ### COMPONENTS ###
-import { RenderGifs, TrendingSearches } from 'components/'
+import { RenderGifs, TrendingSearches, SearchForm } from 'components/'
 
 export default function Home () {
-   const [searchGifs, setSearchGifs] = useState("")
    const [path, pushLocation] = useLocation()
 
-   const handleSubmit = e => {
-      e.preventDefault()
+   const handleSubmit = useCallback(({searchGifs}) => {
       pushLocation(`/search/${searchGifs}`)
-   }
-
-   const handleChange = e => {
-      setSearchGifs(e.target.value)
-   }
+   }, [pushLocation])
 
    return (
       <>
-         <form onSubmit={handleSubmit}>
-            <input
-               type="text"
-               value={searchGifs}
-               onChange={handleChange}
-               placeholder="Search a Gif Here!!!"
-            />
-         </form>
-
+         <SearchForm onSubmit={handleSubmit} />
          <div className="App-main">
             <div className="App-results">
                <h3 className="App-title">Most Populars</h3>

@@ -10,7 +10,7 @@ import useLazyLoad from 'hooks/useLazyLoad'
 // ### COMPONENTS ###
 import { GifsList, Spinner } from 'components/'
 
-export default function RenderGifs ({searchGifs}) {
+function RenderGifs ({searchGifs}) {
    const {loading, gifs, setPage} = useGifs({searchGifs})
    const externalRef= useRef()
    const {isNearScreen} = useLazyLoad({
@@ -53,3 +53,5 @@ export default function RenderGifs ({searchGifs}) {
       </>
    )
 }
+
+export default React.memo(RenderGifs)
