@@ -5,6 +5,9 @@ import { useLocation } from 'wouter'
 // ### COMPONENTS ###
 import { RenderGifs, TrendingSearches, SearchForm } from 'components/'
 
+// ### SEO ###
+import { Helmet } from 'react-helmet'
+
 export default function Home () {
    const [path, pushLocation] = useLocation()
 
@@ -14,6 +17,10 @@ export default function Home () {
 
    return (
       <>
+         <Helmet>
+            <title>Home || Search Giffs</title>
+            <meta name="desctiption" content="Gif Searcher using API giphy.com" />
+         </Helmet>
          <SearchForm onSubmit={handleSubmit} />
          <div className="App-main">
             <div className="App-results">

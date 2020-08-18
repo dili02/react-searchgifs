@@ -10,6 +10,9 @@ import useLazyLoad from 'hooks/useLazyLoad'
 // ### COMPONENTS ###
 import { GifsList, Spinner } from 'components/'
 
+// ### SEO ###
+import { Helmet } from 'react-helmet'
+
 function RenderGifs ({searchGifs}) {
    const {loading, gifs, setPage} = useGifs({searchGifs})
    const externalRef= useRef()
@@ -18,6 +21,7 @@ function RenderGifs ({searchGifs}) {
       toogleIsVisible: false
    })
    const location = useLocation()
+   const title = gifs ? `${gifs.length} results the ${searchGifs}` : ''
 
    let isHomePage
    if (location[0] === '/') {
@@ -38,6 +42,10 @@ function RenderGifs ({searchGifs}) {
 
    return (
       <>
+         <Helmet>
+            <title>{title} || SearchGiffs</title>
+            <meta name="desctiption" content={title} />
+         </Helmet>
          {
             loading
             ? <Spinner />
