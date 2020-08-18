@@ -1,20 +1,42 @@
 // #### DEPENDENCES ####
-import React, {useContext} from 'react'
+import React from 'react'
+import {Redirect} from 'wouter'
 
 // #### CUSTOM HOOKS ####
-//import useGifsContext from 'hooks/useGifsContext'
-import GifsContext from 'context/GifsContext'
+import useGif from 'hooks/useGif'
 
 // #### COMPONENTS ####
-import {Gif} from 'components/'
+import {Gif, Spinner} from 'components/'
+
+// #### SEO ####
+import {Helmet} from 'react-helmet'
 
 export default function Detail ({params}) {
-   /* const {gifs} = useGifsContext()*/
-   const {gifs} = useContext(GifsContext)
 
-   const {id, title, url} = gifs.find(gif =>
-      gif.id === params.id
-   )
+   const {gif, isLoading, isError} = useGif({id: params.id})
 
-   return <Gif title={title} id={id} url={url} />
+   if (isLoading) {
+      return (
+         <>
+            <Helmet>
+               <title>Cargando...</title>
+            </Helmet>
+            <Spinner />
+         </>
+      )
+   }
+
+   if (isError) return <Redirect to="/404" />
+   if (!gif) return null
+
+   const {title, url, id} = gif
+
+   return <>
+      <Helmet>
+         <title>{title}|| Search Giffs</title>
+         <meta name="desctiption" content={title} />
+      </Helmet>
+      <Gif title={title} url={url} id={id} />
+   </>
+
 }
