@@ -2,15 +2,16 @@
 import React from 'react'
 
 // ### COMPONENTS ###
-import {RenderGifs} from 'components/'
+import {RenderGifs, SearchForm} from 'components/'
 
 export default function SearchResults ({params}) {
-   const {searchGifs} = params
+   const {searchGifs, rating, language} = params
 
    return (
       <>
-         <h3 className="App-title">{decodeURI(searchGifs)}</h3>
-         <RenderGifs searchGifs={searchGifs} />
+         <SearchForm initialRating={rating} initialSearchGifs={searchGifs} initialLanguage={language} />
+         <h3 className="App-title">{decodeURI(searchGifs)} - {rating} - {language}</h3>
+         <RenderGifs searchGifs={searchGifs} rating={rating} language={language} />
       </>
    )
 

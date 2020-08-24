@@ -13,8 +13,8 @@ import { GifsList, Spinner } from 'components/'
 // ### SEO ###
 import { Helmet } from 'react-helmet'
 
-function RenderGifs ({searchGifs}) {
-   const {loading, gifs, setPage} = useGifs({searchGifs})
+function RenderGifs ({searchGifs, rating, language}) {
+   const {loading, gifs, setPage} = useGifs({searchGifs, rating, language})
    const externalRef= useRef()
    const {isNearScreen} = useLazyLoad({
       externalRef: loading ? null : externalRef,
