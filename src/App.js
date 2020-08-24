@@ -34,7 +34,7 @@ function App () {
 
                 <Route
                   component={SearchResults}
-                  path='/search/:searchGifs'
+                  path='/search/:searchGifs/:rating?/:language?'
                />
 
                <Route
